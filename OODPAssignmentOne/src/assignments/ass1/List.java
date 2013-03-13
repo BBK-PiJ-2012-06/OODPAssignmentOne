@@ -45,7 +45,14 @@ public class List<T> {
 	 */
 	@Override
 	public String toString() {
-		return null; // REPLACE WITH YOUR CODE
+		StringBuilder result = new StringBuilder();
+		result.append('[');
+		for(T item : items) {
+			result.append(' ');
+			result.append(item.toString());
+		}
+		result.append(']');
+		return result;
 	}
 	
 	@SuppressWarnings("unchecked")
