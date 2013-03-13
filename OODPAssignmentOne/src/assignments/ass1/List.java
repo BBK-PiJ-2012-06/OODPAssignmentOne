@@ -47,12 +47,16 @@ public class List<T> {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append('[');
-		for(T item : items) {
-			result.append(' ');
-			result.append(item.toString());
+		if(numItems > 0) {
+			result.append(items[0].toString());
+			// We want the numSpaces = numItems - 1
+			for(int i=1; i<numItems; i++) {
+				result.append(' ');
+				result.append(items[i].toString());
+			}
 		}
 		result.append(']');
-		return result;
+		return result.toString();
 	}
 	
 	@SuppressWarnings("unchecked")
