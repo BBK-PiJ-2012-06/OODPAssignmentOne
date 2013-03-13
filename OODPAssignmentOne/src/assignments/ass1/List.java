@@ -14,6 +14,7 @@ public class List<T> {
 	private static final int INIT_LEN = 10;
 	private T[] items; // the actual items
 	private int numItems; // the number of items currently in the list
+	
 	/*
 	 * constructor: initialize the list to be empty
 	 */
@@ -22,14 +23,20 @@ public class List<T> {
 		items = (T[]) new Object[INIT_LEN];
 		numItems = 0;
 	}
+	
 	/*
 	 * AddToEnd
 	 *
 	 * Given: Object obj Do: Add obj to the end of the list.
 	 */
 	public void addToEnd(T obj) {
-		
+		// Check if items is full
+		if(numItems == items.length) {
+			doubleArrayLength();
+		}
+		items[numItems++] = obj;
 	}
+	
 	/*
 	 * toString
 	 *
@@ -39,5 +46,14 @@ public class List<T> {
 	@Override
 	public String toString() {
 		return null; // REPLACE WITH YOUR CODE
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void doubleArrayLength() {
+		T[] temp = (T[]) new Object[2 * numItems];
+		for(int i=0; i<numItems; i++) {
+			temp[i] = items[i];
+		}
+		items = temp;		
 	}
 }
