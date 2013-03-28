@@ -35,14 +35,28 @@ public class ListTest {
 			objList.addToEnd(object);
 		}
 	}
+	
+	@Test
+	public void testAddNullToEnd() {
+		intList.addToEnd(6);
+		intList.addToEnd(null);
+		intList.addToEnd(7);
+		// Desired behaviour of addToEnd() is to ignore the null call
+		String expected = "[6 7]";
+		assertEquals(expected, intList.toString());
+	}
 
 	@Test
 	public void testToString() {
-		assertEquals("[]", intList.toString());
 		for(Integer i : ints) {
 			intList.addToEnd(i);
 		}
 		String expected = "[1 2 3 4 5 6 7 8 9 10]";
 		assertEquals(expected, intList.toString());
+	}
+	
+	@Test
+	public void testToStringWhenEmpty() {
+		assertEquals("[]", intList.toString());
 	}
 }

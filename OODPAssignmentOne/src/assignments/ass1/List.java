@@ -28,8 +28,13 @@ public class List<T> {
 	 * AddToEnd
 	 *
 	 * Given: Object obj Do: Add obj to the end of the list.
+	 * If obj is null do nothing.
 	 */
 	public void addToEnd(T obj) {
+		// Check obj is not null
+		if(obj == null) {
+			return;
+		}
 		// Check if items is full
 		if(numItems == items.length) {
 			doubleArrayLength();
@@ -49,7 +54,7 @@ public class List<T> {
 		result.append('[');
 		if(numItems > 0) {
 			result.append(items[0].toString());
-			// We want the numSpaces = numItems - 1
+			// We want number of spaces to be equal to numItems - 1
 			for(int i=1; i<numItems; i++) {
 				result.append(' ');
 				result.append(items[i].toString());
