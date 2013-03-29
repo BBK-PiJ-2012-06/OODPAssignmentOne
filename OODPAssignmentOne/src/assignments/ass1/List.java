@@ -14,6 +14,7 @@ public class List<T> {
 	private static final int INIT_LEN = 10;
 	private T[] items; // the actual items
 	private int numItems; // the number of items currently in the list
+	private int currentObject;
 	
 	/*
 	 * constructor: initialize the list to be empty
@@ -22,6 +23,7 @@ public class List<T> {
 	public List() {
 		items = (T[]) new Object[INIT_LEN];
 		numItems = 0;
+		currentObject = 0;
 	}
 	
 	/*
@@ -62,6 +64,38 @@ public class List<T> {
 		}
 		result.append(']');
 		return result.toString();
+	}
+	
+	/*
+	 * firstElement
+	 * 
+	 * Makes the first object on the list be the current object.
+	 */
+	public void firstElement() {
+		currentObject = 0;
+	}
+	
+	/*
+	 * nextElement
+	 * 
+	 * Returns the current object, and makes the next object on the 
+	 * list the current object.
+	 */
+	public T nextElement() {
+		return items[currentObject++];
+	}
+	
+	/*
+	 * hasMoreElements
+	 * 
+	 * Returns true if the list is not empty and the current object
+	 * is not the last object on the list.
+	 */
+	public boolean hasMoreElements() {
+		if(numItems == 0 || currentObject == numItems) {
+			return false;
+		}
+		return true;
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -13,8 +13,8 @@ public class ListTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		objList = new List<Object>();
-		intList = new List<Integer>();
+		objList = new List<>();
+		intList = new List<>();
 		objects = new Object[11];
 		ints = new Integer[10];
 		for(int i=0; i<10; i++) {
@@ -58,5 +58,41 @@ public class ListTest {
 	@Test
 	public void testToStringWhenEmpty() {
 		assertEquals("[]", intList.toString());
+	}
+	
+	@Test
+	public void testFirstElement() {
+		for(Integer i : ints) {
+			intList.addToEnd(i);
+		}
+		intList.firstElement();
+		intList.nextElement();
+		intList.nextElement();
+		intList.firstElement();
+		
+		assertEquals(ints[0], intList.nextElement());
+	}
+	
+	@Test
+	public void testNextElement() {
+		for(Integer i : ints) {
+			intList.addToEnd(i);
+		}
+		for(Integer i : ints) {
+			assertEquals(i, intList.nextElement());
+		}
+	}
+	
+	@Test
+	public void testHasMoreElements() {
+		assertFalse(intList.hasMoreElements());
+		
+		intList.addToEnd(ints[0]);
+		intList.addToEnd(ints[1]);
+		assertTrue(intList.hasMoreElements());
+		
+		intList.nextElement();
+		intList.nextElement();
+		assertFalse(intList.hasMoreElements());
 	}
 }
