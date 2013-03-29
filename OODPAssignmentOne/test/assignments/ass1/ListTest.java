@@ -6,16 +6,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ListTest {
-	private List<Object> objList;
+	private List<String> strList;
 	private List<Integer> intList;
-	private Object[] objects;
+	private String[] strings;
 	private Integer[] ints;
 	
 	@Before
 	public void setUp() throws Exception {
-		objList = new List<>();
+		strList = new List<>();
 		intList = new List<>();
-		objects = new Object[11];
+		strings = new String[11];
+		for (int i = 0; i < 11; i++) {
+			strings[i] = ".";
+		}
 		ints = new Integer[10];
 		for(int i=0; i<10; i++) {
 			ints[i] = new Integer(i+1);
@@ -25,14 +28,20 @@ public class ListTest {
 	@Test
 	public void testAddToEnd() {
 		for(int i=0; i<10; i++) {
-			objList.addToEnd(objects[i]);
+			strList.addToEnd(strings[i]);
+		}
+		for(int i=0; i<10; i++) {
+			assertEquals(strings[i], strList.nextElement());
 		}
 	}
 	
 	@Test
 	public void testAddToEndWhenFull() {
-		for(Object object : objects) {
-			objList.addToEnd(object);
+		for(String str : strings) {
+			strList.addToEnd(str);
+		}
+		for(String str : strings) {
+			assertEquals(str, strList.nextElement());
 		}
 	}
 	
