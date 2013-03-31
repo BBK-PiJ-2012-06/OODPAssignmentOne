@@ -82,10 +82,11 @@ public class List<T> {
 	 * list the current object. If there is no next element, returns null.
 	 */
 	public T nextElement() {
+		T result = null;
 		if(hasMoreElements()) {
-			return items[currentObject++];
+			result = items[currentObject++];
 		}
-		return null;
+		return result;
 	}
 	
 	/*
