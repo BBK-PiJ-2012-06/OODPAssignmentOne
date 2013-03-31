@@ -79,10 +79,13 @@ public class List<T> {
 	 * nextElement
 	 * 
 	 * Returns the current object, and makes the next object on the 
-	 * list the current object.
+	 * list the current object. If there is no next element, returns null.
 	 */
 	public T nextElement() {
-		return items[currentObject++];
+		if(hasMoreElements()) {
+			return items[currentObject++];
+		}
+		return null;
 	}
 	
 	/*
